@@ -12,4 +12,4 @@ This is a public repository so there is no need to create an account to download
 
 To download via git from your preferred terminal application, type:
 
-```git clone https://resources.oreilly.com/binderhub/${END OF URL}```
+```git clone https://resources.oreilly.com/binderhub/sqlite-for-data-scientists```
