@@ -1,6 +1,0 @@
-[submodule "data/fivethirtyeight"]
-	path = data/fivethirtyeight
-	url = git@github.com:fivethirtyeight/data.git
-[submodule "data/data/fivethirtyeight"]
-	path = data/data/fivethirtyeight
-	url = git@github.com:fivethirtyeight/data.git
