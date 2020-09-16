@@ -2,7 +2,7 @@
 
 ![Powered by Jupyter Logo](https://cdn.oreillystatic.com/images/icons/powered_by_jupyter.png)
 
-[![Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fresources.oreilly.com%2Fbinderhub%2Fsqlite-for-data-scientists.git/master)
+[![Binder](http://mybinder.org/badge_logo.svg)](https://online-training.binderhub-dev.gcp.oreilly.com/v2/gl/binderhub%2Fsqlite-for-data-scientists/master)
 
 This project contains the Jupyter Notebooks and supporting files for _SQLite for Data Scientists_ with Florents Tselai. 
 
