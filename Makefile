@@ -14,25 +14,29 @@ KEYWORDS_LIST=sqlite mongodb postgres oracle elasticsearch cassandra redis spark
 
 export TABLE = search_results  # Available for all targets
 
-sqlite-olt.db:
+pre-sqlite-olt.db:
 	sqlite3 $@ < ./schema.sql
 	for term in ${KEYWORDS_LIST}; do \
 		echo $$term; \
-		echo http://hn.algolia.com/api/v1/search\?tags=comment\&query\=$$term\&hitsPerPage\=1000; \
-		curl -Ls http://hn.algolia.com/api/v1/search\?tags=story\&query\=$$term\&hitsPerPage\=1000 | \
-		sqlite3 $@ ".import /dev/stdin search_results";\
+		search_url=http://hn.algolia.com/api/v1/search\?tags=comment\&query\=$$term\&hitsPerPage\=1000; \
+		curl -Ls $$search_url | \
+		jq -rc |\
+		./pipe_to_sqlite.py; \
 	done
+		#sqlite3 $@ ".import /dev/stdin search_results";\
+	#done
 
 	while read term; do \
 			echo $$term; \
   		echo http://hn.algolia.com/api/v1/search\?tags=comment\&query\=$$term\&hitsPerPage\=1000; \
 		curl -Ls http://hn.algolia.com/api/v1/search\?tags=story\&query\=$$term\&hitsPerPage\=1000 | \
-		sqlite3 $@ ".import /dev/stdin search_results";\
+		jq -rc |\
+		./pipe_to_sqlite.py; \
 	done <./data/keywords.csv
 
 .PHONY:data/hn_dump.json.gz
-data/hn_dump.json.gz:
-	python hn_dump.py | gzip -c9 - > $@
+data/hn_dump.json.gz: data/hn_dump.json
+	gzip -ck9 data/hn_dump.json > $@
 
 .PHONY:data/hn_dump.json
 data/hn_dump.json:

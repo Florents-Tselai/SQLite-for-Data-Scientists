@@ -9,7 +9,7 @@ import json
 
 def main():
     items = []
-    with connect(getenv('DB_URI', './sqlite-olt.db')) as db:
+    with connect(getenv('DB_URI', './pre-sqlite-olt.db')) as db:
         for hits, in db.execute("select json_extract(data, '$.hits') from search_results where json_valid(data) = 1 limit 50000"):
             items += json.loads(hits)
     print(json.dumps(items))
