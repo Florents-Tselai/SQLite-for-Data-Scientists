@@ -6,7 +6,7 @@
 
 This project contains the Jupyter Notebooks and supporting files for _SQLite for Data Scientists_ with Florents Tselai. 
 
-These notebooks can be run on the O'Reilly Learning Platform [here](https://learning.oreilly.com/jupyter-notebooks/~/${NOTEBOOK_FPID}).
+These notebooks can be run on the O'Reilly Learning Platform [here](https://learning.oreilly.com/jupyter-notebooks/~/9781492094555).
 
 It contains both the exercises (/notebooks), possibly the solutions (/solutions), as well as any data or files needed (/data). If you are familiar with docker, there is also a dockerfile included for your convenience. 
 
