@@ -47,7 +47,15 @@ data/hn_dump.mini.json: data/hn_dump.json.gz
 	gzip -cd data/hn_dump.json.gz | jq '.[10:15]' > $@
 
 .PHONY: sqlite-olt.db.sql.gz
-sqlite-olt.db.sql.gz:
-	sqlite3 sqlite-olt.db .dump | gzip -c9 - > $@
+pre-sqlite-olt.db.sql.gz:
+	sqlite3 pre-sqlite-olt.db .dump | gzip -c9 - > $@
 	echo $@ "created"
 	du -h $@
+
+.PHONY: data/hn_items_export.csv.gz
+data/hn_items_export.csv.gz:
+	sqlite3 pre-sqlite-olt.db < ./schema.sql
+	sqlite3 pre-sqlite-olt.db "select created_at, objectID, author, points, comment_text_length, story_text_length, story_id, story_title, story_url from hn_items_export" |\
+	sort -u | gzip -ck9 - > $@
+
+	gzip -dk $@ | head > data/hn_items_export.csv
