@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 
 DB_FILE=sqlite-olt.db
 
-install-environment:
+create-environment:
 	conda env create --force -f environment.yml
 
 db:
